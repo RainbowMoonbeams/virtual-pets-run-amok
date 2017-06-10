@@ -1,5 +1,11 @@
 package virtualpetsrunamok;
 
-public class RoboticPet {
+public interface RoboticPet {
+
+	String getName();
+	
+	public void oilPet();
+	public int getOilLevel();
+	public void recharge();
 
 }
