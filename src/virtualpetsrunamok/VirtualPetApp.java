@@ -32,7 +32,7 @@ public class VirtualPetApp {
 
 		boolean quit = false;
 
-		writeLine("Thank you for volunteering at the Animals Must be OK Shelter! AMOK for short. \nIf you are receiving this message in error, we sorry for the mix-up.\nSince you are already here, you may as well learn how to care for our pets...");
+		writeLine("Thank you for volunteering at the AMOK Shelter! \nIf you are receiving this message in error, we sorry for the mix-up.\nSince you are already here, you may as well learn how to care for our pets...");
 		writeLine("\nThis shelter caters to robotic cats & dogs as well as organic cats & dogs. Things 'bout to get cray cray up in here.");
 		do {
 			if (shelter.getLitterBox() >= 100) {
