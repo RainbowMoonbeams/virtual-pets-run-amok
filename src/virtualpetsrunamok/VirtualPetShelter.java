@@ -14,14 +14,24 @@ public class VirtualPetShelter {
 	Map<String, RoboticPet> roboticDogs = new HashMap<String, RoboticPet>();
 	Map<String, RoboticPet> roboticCats = new HashMap<String, RoboticPet>();
 
+	// Clean Organig Dog cages
+	public void cleanDogCages() {
+		for (OrganicPet d : organicDogs.values()) {
+			((OrgDog) d).cleanCage();
+		}
+	}
+
+	// Gets info for the litterbox
 	public int getLitterBox() {
 		return litterBox;
 	}
 
+	// Cleans the litterbox for Organic Cats
 	public void cleanLitterBox() {
 		litterBox = 0;
 	}
 
+	// Maintain all Robotic Pets
 	public void maintainAllRobo() {
 		for (RoboticPet d : roboticDogs.values()) {
 			d.oilPet();
@@ -33,12 +43,7 @@ public class VirtualPetShelter {
 		}
 	}
 
-	public void cleanDogCages() {
-		for (OrganicPet d : organicDogs.values()) {
-			((OrgDog) d).cleanCage();
-		}
-	}
-
+	// Walk Organic or Robotic Dog
 	public void walkDogs() {
 		for (OrganicPet d : organicDogs.values()) {
 			((Dog) d).walk();
@@ -49,53 +54,57 @@ public class VirtualPetShelter {
 
 	}
 
+	// Intake Organic Pet
 	public void intake(OrganicPet pet) {
 		shelterPets.put(pet.getName(), (VirtualPet) pet);
-		if (pet instanceof OrgCat) {
-			organicCats.put(pet.getName(), pet);
-		}
 		if (pet instanceof OrgDog) {
 			organicDogs.put(pet.getName(), pet);
 		}
+		if (pet instanceof OrgCat) {
+			organicCats.put(pet.getName(), pet);
+		}
 	}
 
+	// Intake Robotic Pet
 	public void intake(RoboticPet pet) {
 		shelterPets.put(pet.getName(), (VirtualPet) pet);
-		if (pet instanceof RoboCat) {
-			roboticCats.put(pet.getName(), pet);
-		}
 		if (pet instanceof RoboDog) {
 			roboticDogs.put(pet.getName(), pet);
 		}
+		if (pet instanceof RoboCat) {
+			roboticCats.put(pet.getName(), pet);
+		}
 	}
 
+	// Feed Organic Pets
 	public void feedAllOrganic() {
-		for (OrganicPet p : organicDogs.values()) {
-			p.feed();
+		for (OrganicPet d : organicDogs.values()) {
+			d.feed();
 		}
-		for (OrganicPet p : organicCats.values()) {
-			p.feed();
+		for (OrganicPet c : organicCats.values()) {
+			c.feed();
 		}
 		litterBox += 10;
 	}
 
+	// Water Organic Pets
 	public void waterAllOrganic() {
-		for (OrganicPet p : organicDogs.values()) {
-			p.water();
+		for (OrganicPet d : organicDogs.values()) {
+			d.water();
 		}
-		for (OrganicPet p : organicCats.values()) {
-			p.water();
+		for (OrganicPet c : organicCats.values()) {
+			c.water();
 		}
 		litterBox += 5;
 	}
 
-	// Tick method (**ASK BRIAN WHY WE ARE RETURNING CAGE MESSINESS FOR DOGS**)
+	// Tick method for Organic & Robotic
 	void tickAllPets() {
-		for (OrganicPet p : organicDogs.values()) {
-			p.tick();
+		for (OrganicPet d : organicDogs.values()) {
+			d.tick();
 		}
-		for (OrganicPet p : organicCats.values()) {
-			litterBox += p.tick();
+		for (OrganicPet c : organicCats.values()) {
+			litterBox += c.tick();
 		}
 		for (RoboticPet d : roboticDogs.values()) {
 			((RoboDog) d).tick();
@@ -137,21 +146,21 @@ public class VirtualPetShelter {
 		player.play();
 	}
 
-	// Method to adopt a pet
+	// Method to adopt an Organic or Robotic pet
 	public void adoptPet(VirtualPet pet) {
 		shelterPets.remove(pet.getName());
 
-		if (pet instanceof RoboDog) {
-			roboticDogs.remove(pet.getName(), pet);
-		}
-		if (pet instanceof RoboCat) {
-			roboticCats.remove(pet.getName(), pet);
-		}
 		if (pet instanceof OrgDog) {
 			organicDogs.remove(pet.getName(), pet);
 		}
 		if (pet instanceof OrgCat) {
 			organicCats.remove(pet.getName(), pet);
+		}
+		if (pet instanceof RoboDog) {
+			roboticDogs.remove(pet.getName(), pet);
+		}
+		if (pet instanceof RoboCat) {
+			roboticCats.remove(pet.getName(), pet);
 		}
 	}
 }

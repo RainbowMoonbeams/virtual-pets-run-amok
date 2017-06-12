@@ -15,9 +15,9 @@ public abstract class VirtualPet {
 	protected int mood;
 	
 	//Constructor that accepts VirtualPet and establishes default attributes for new pets
-	public VirtualPet(String newName, String newDescription) {
-		name = newName;
-		description = newDescription;
+	public VirtualPet(String nameParam, String descriptionParam) {
+		name = nameParam;
+		description = descriptionParam;
 		health = 50;
 		mood = 50;
 	}
